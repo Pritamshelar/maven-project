@@ -6,7 +6,7 @@ pipeline
         stage('scm checkout')
         {steps
         {
-            sh "git branch: 'master', url: 'https://github.com/Pritamshelar/maven-project.git'"
+            git branch: 'master', url: 'https://github.com/Pritamshelar/maven-project.git'
         }}
 
         stage('execute unit test framework')
