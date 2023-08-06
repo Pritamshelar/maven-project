@@ -18,5 +18,10 @@ pipeline
         {steps { withMaven(globalMavenSettingsConfig: '4d6e9ea9-f141-4ab3-ac98-4c4afce352ab', jdk: 'localjdk', maven: 'maven', mavenSettingsConfig: '2ddcfa8c-4cab-425b-be02-6da76cbd7dcb', traceability: true) {
     sh 'mvn package'
 }} }
+
+       stage('Deploy to tomcat')
+       {steps {sshagent(['tomcat_pipeline']) {
+    sh 'scp -o StrictHostKeyChecking=no webapp/target/webapp.war ec2-user@3.73.36.107:/usr/share/tomcat/webapps'
+}}}
     }
 }
